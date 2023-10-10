@@ -91,10 +91,6 @@ githubBuildWorkflow.addJob("build", {
     },
     { name: "Setup Node.js", uses: "actions/setup-node@v3", with: { ["node-version"]: "18.16.0" } },
     {
-      name: "Authenticate Npm Registry",
-      run: "npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
-    },
-    {
       name: "Set git identity",
       run: 'git config user.name "Automation"\ngit config user.email "github-actions@github.com"'
     },
