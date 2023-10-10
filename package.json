@@ -1,5 +1,9 @@
 {
   "name": "cdkv2-dynamodb-seeder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bibekgupta3333/cdkv2-dynamodb-seeder.git"
+  },
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",

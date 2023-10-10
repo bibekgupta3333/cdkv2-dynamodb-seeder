@@ -4,6 +4,7 @@ const project = new typescript.TypeScriptProject({
   defaultReleaseBranch: "dev",
   name: "cdkv2-dynamodb-seeder",
   releaseToNpm: true,
+  repository: "https://github.com/bibekgupta3333/cdkv2-dynamodb-seeder.git",
   workflowContainerImage: "jsii/superchain:1-buster-slim-node18",
   packageManager: javascript.NodePackageManager.NPM,
   gitignore: [".DS_Store"],
