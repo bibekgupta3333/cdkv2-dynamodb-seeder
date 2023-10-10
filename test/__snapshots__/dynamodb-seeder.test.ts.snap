@@ -1,0 +1,808 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bucket 1`] = `
+{
+  "Resources": {
+    "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10": {
+      "DependsOn": [
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "a10dd5dfe3c474070afe3163a474704be2cd89f47f1b62bc21c6909357377984.zip",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "dynamodb:BatchWriteItem",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TableCD117FA1",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":s3:::my-seeds-bucket/seeds.json",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "Roles": [
+          {
+            "Ref": "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DynamoDBSeederCustomResourceEF4D5C60": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "Seeds": {
+          "S3Bucket": "my-seeds-bucket",
+          "S3Key": "seeds.json",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10",
+            "Arn",
+          ],
+        },
+        "TableName": {
+          "Ref": "TableCD117FA1",
+        },
+      },
+      "Type": "Custom::DynamodbSeeder",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TableCD117FA1": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "N",
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;
+
+exports[`customer managed encryption key 1`] = `
+{
+  "Resources": {
+    "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10": {
+      "DependsOn": [
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "a10dd5dfe3c474070afe3163a474704be2cd89f47f1b62bc21c6909357377984.zip",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "dynamodb:BatchWriteItem",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TableCD117FA1",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:DescribeKey",
+                "kms:CreateGrant",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TableKey25666F95",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "Roles": [
+          {
+            "Ref": "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DynamoDBSeederCustomResourceEF4D5C60": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "Seeds": {
+          "InlineSeeds": "[{"id":1,"column":"foo"},{"id":2,"column":"bar"}]",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10",
+            "Arn",
+          ],
+        },
+        "TableName": {
+          "Ref": "TableCD117FA1",
+        },
+      },
+      "Type": "Custom::DynamodbSeeder",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TableCD117FA1": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "N",
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+        "SSESpecification": {
+          "KMSMasterKeyId": {
+            "Fn::GetAtt": [
+              "TableKey25666F95",
+              "Arn",
+            ],
+          },
+          "SSEEnabled": true,
+          "SSEType": "KMS",
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "TableKey25666F95": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "Description": "Customer-managed key auto-created for encrypting DynamoDB table at Default/Table",
+        "EnableKeyRotation": true,
+        "KeyPolicy": {
+          "Statement": [
+            {
+              "Action": "kms:*",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":root",
+                    ],
+                  ],
+                },
+              },
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::KMS::Key",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;
+
+exports[`inline 1`] = `
+{
+  "Resources": {
+    "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10": {
+      "DependsOn": [
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "a10dd5dfe3c474070afe3163a474704be2cd89f47f1b62bc21c6909357377984.zip",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "dynamodb:BatchWriteItem",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TableCD117FA1",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "Roles": [
+          {
+            "Ref": "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DynamoDBSeederCustomResourceEF4D5C60": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "Seeds": {
+          "InlineSeeds": "[{"id":1,"column":"foo"},{"id":2,"column":"bar"}]",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10",
+            "Arn",
+          ],
+        },
+        "TableName": {
+          "Ref": "TableCD117FA1",
+        },
+      },
+      "Type": "Custom::DynamodbSeeder",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TableCD117FA1": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "N",
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;
+
+exports[`json file 1`] = `
+{
+  "Resources": {
+    "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10": {
+      "DependsOn": [
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "a10dd5dfe3c474070afe3163a474704be2cd89f47f1b62bc21c6909357377984.zip",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "dynamodb:BatchWriteItem",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TableCD117FA1",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":s3:::",
+                    {
+                      "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+                    },
+                    "/d030fc4499f9b92060beabbe94d500033cde3dd8a61a1668fdfcee96b2019ffd.json",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "Roles": [
+          {
+            "Ref": "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DynamoDBSeederCustomResourceEF4D5C60": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "Seeds": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "d030fc4499f9b92060beabbe94d500033cde3dd8a61a1668fdfcee96b2019ffd.json",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10",
+            "Arn",
+          ],
+        },
+        "TableName": {
+          "Ref": "TableCD117FA1",
+        },
+      },
+      "Type": "Custom::DynamodbSeeder",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TableCD117FA1": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "N",
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;
+
+exports[`multiple seeders 1`] = `
+{
+  "Resources": {
+    "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10": {
+      "DependsOn": [
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "a10dd5dfe3c474070afe3163a474704be2cd89f47f1b62bc21c6909357377984.zip",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "dynamodb:BatchWriteItem",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TableCD117FA1",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":s3:::seeds-bucket-one/seeds-one.json",
+                  ],
+                ],
+              },
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":s3:::seeds-bucket-two/seeds-two.json",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CustomDynamodbSeederCustomDynamodbSeederServiceRoleDefaultPolicy6C04255C",
+        "Roles": [
+          {
+            "Ref": "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DynamoDBSeeder1CustomResource555E70AD": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "Seeds": {
+          "S3Bucket": "seeds-bucket-one",
+          "S3Key": "seeds-one.json",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10",
+            "Arn",
+          ],
+        },
+        "TableName": {
+          "Ref": "TableCD117FA1",
+        },
+      },
+      "Type": "Custom::DynamodbSeeder",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "DynamoDBSeeder2CustomResourceAC955965": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "Seeds": {
+          "S3Bucket": "seeds-bucket-two",
+          "S3Key": "seeds-two.json",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDynamodbSeederCustomDynamodbSeeder3D3D7F10",
+            "Arn",
+          ],
+        },
+        "TableName": {
+          "Ref": "TableCD117FA1",
+        },
+      },
+      "Type": "Custom::DynamodbSeeder",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TableCD117FA1": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "N",
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;
