@@ -172,7 +172,7 @@ githubReleaseWorkflow.addJob("release", {
     },
     {
       name: "release",
-      run: "npx projen release"
+      run: "npx projen test && npx run build"
     },
     {
       name: "Check for new commits",
