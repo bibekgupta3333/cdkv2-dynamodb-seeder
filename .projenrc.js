@@ -57,7 +57,7 @@ const project = new typescript.TypeScriptProject({
     "aws-lambda",
     "@types/aws-lambda"
   ],
-  deps: ["aws-cdk-lib@2.96.0", "aws-cdk@2.96.0", "constructs@10.0.5", "aws-lambda"]
+  deps: ["aws-cdk-lib@2.96.0", "aws-cdk@2.96.0", "constructs@10.0.5", "aws-lambda", "minimatch"]
 });
 
 // removing projen default release and build workflows

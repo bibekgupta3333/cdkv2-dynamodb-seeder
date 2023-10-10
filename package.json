@@ -49,7 +49,8 @@
     "aws-cdk": "2.96.0",
     "aws-cdk-lib": "2.96.0",
     "aws-lambda": "^1.0.7",
-    "constructs": "10.0.5"
+    "constructs": "10.0.5",
+    "minimatch": "^3.1.2"
   },
   "engines": {
     "node": ">= 18.16.0"
