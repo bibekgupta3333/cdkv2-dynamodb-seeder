@@ -51,14 +51,21 @@ const project = new typescript.TypeScriptProject({
   devDeps: [
     "aws-cdk-lib@2.96.0",
     "@types/lodash.chunk@4.2.7",
-    "aws-sdk",
+
     "custom-resource-helper",
     "jest-cdk-snapshot",
     "lodash.chunk@4.2.0",
     "aws-lambda",
     "@types/aws-lambda"
   ],
-  deps: ["aws-cdk-lib@2.96.0", "aws-cdk@2.96.0", "constructs@10.0.5", "aws-lambda", "minimatch"]
+  deps: [
+    "aws-cdk-lib@2.96.0",
+    "aws-cdk@2.96.0",
+    "constructs@10.0.5",
+    "aws-lambda",
+    "minimatch",
+    "aws-sdk"
+  ]
 });
 
 // removing projen default release and build workflows

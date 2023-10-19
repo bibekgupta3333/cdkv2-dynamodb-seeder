@@ -38,10 +38,6 @@
       "type": "build"
     },
     {
-      "name": "aws-sdk",
-      "type": "build"
-    },
-    {
       "name": "custom-resource-helper",
       "type": "build"
     },
@@ -121,6 +117,10 @@
     },
     {
       "name": "aws-lambda",
+      "type": "runtime"
+    },
+    {
+      "name": "aws-sdk",
       "type": "runtime"
     },
     {
