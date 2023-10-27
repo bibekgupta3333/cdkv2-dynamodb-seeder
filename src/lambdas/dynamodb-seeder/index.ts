@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import type { CloudFormationCustomResourceEvent } from "aws-lambda";
 import { DynamoDB, S3 } from "aws-sdk";
 import {

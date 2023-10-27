@@ -1,6 +1,5 @@
 import * as fs from "fs";
-import { IBucket, Location } from "aws-cdk-lib/aws-s3";
-import { Asset, AssetOptions } from "aws-cdk-lib/aws-s3-assets";
+import { aws_s3 as s3, aws_s3_assets as s3_assets } from "aws-cdk-lib";
 import { Construct } from "constructs";
 
 export abstract class Seeds {
@@ -10,7 +9,7 @@ export abstract class Seeds {
    * @param key The object key
    * @param objectVersion Optional S3 object version
    */
-  public static fromBucket(bucket: IBucket, key: string, objectVersion?: string): S3Seeds {
+  public static fromBucket(bucket: s3.IBucket, key: string, objectVersion?: string): S3Seeds {
     return new S3Seeds(bucket, key, objectVersion);
   }
 
@@ -28,7 +27,7 @@ export abstract class Seeds {
    * @returns `JsonFileSeeds` associated with the specified S3 object.
    * @param path Path to json seeds file.
    */
-  public static fromJsonFile(path: string, options?: AssetOptions): JsonFileSeeds {
+  public static fromJsonFile(path: string, options?: s3_assets.AssetOptions): JsonFileSeeds {
     return new JsonFileSeeds(path, options);
   }
 
@@ -45,7 +44,7 @@ export interface SeedsConfig {
   /**
    * The location of the seeds in S3.
    */
-  readonly s3Location?: Location;
+  readonly s3Location?: s3.Location;
 
   /**
    * Inline seeds.
@@ -60,7 +59,7 @@ export class S3Seeds extends Seeds {
   private bucketName: string;
 
   constructor(
-    bucket: IBucket,
+    bucket: s3.IBucket,
     private key: string,
     private objectVersion?: string
   ) {
@@ -111,11 +110,11 @@ export class InlineSeeds extends Seeds {
  * Seeds from a local json file.
  */
 export class JsonFileSeeds extends Seeds {
-  private asset?: Asset;
+  private asset?: s3_assets.Asset;
 
   constructor(
     public readonly path: string,
-    private readonly options: AssetOptions = {}
+    private readonly options: s3_assets.AssetOptions = {}
   ) {
     super();
   }
@@ -123,7 +122,7 @@ export class JsonFileSeeds extends Seeds {
   public bind(scope: Construct): SeedsConfig {
     // If the same JsonFileSeeds is used multiple times, retain only the first instantiation.
     if (!this.asset) {
-      this.asset = new Asset(scope, "JsonFileSeeds", {
+      this.asset = new s3_assets.Asset(scope, "JsonFileSeeds", {
         path: this.path,
         ...this.options
       });

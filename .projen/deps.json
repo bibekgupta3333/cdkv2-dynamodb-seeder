@@ -38,10 +38,6 @@
       "type": "build"
     },
     {
-      "name": "custom-resource-helper",
-      "type": "build"
-    },
-    {
       "name": "eslint-config-prettier",
       "type": "build"
     },
@@ -126,6 +122,15 @@
     {
       "name": "constructs",
       "version": "10.0.5",
+      "type": "runtime"
+    },
+    {
+      "name": "custom-resource-helper",
+      "type": "runtime"
+    },
+    {
+      "name": "lodash.chunk",
+      "version": "4.2.0",
       "type": "runtime"
     },
     {

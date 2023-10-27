@@ -31,7 +31,6 @@
     "@typescript-eslint/parser": "^6",
     "aws-cdk-lib": "2.96.0",
     "aws-lambda": "^1.0.7",
-    "custom-resource-helper": "^1.0.15",
     "eslint": "^8",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-node": "^0.3.9",
@@ -54,6 +53,8 @@
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1476.0",
     "constructs": "10.0.5",
+    "custom-resource-helper": "^1.0.15",
+    "lodash.chunk": "4.2.0",
     "minimatch": "^3.1.2"
   },
   "engines": {

@@ -1,15 +1,18 @@
 import * as path from "path";
-import { CustomResource, Duration } from "aws-cdk-lib";
-import { ITable } from "aws-cdk-lib/aws-dynamodb";
-import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
-import { SingletonFunction, Runtime, Code } from "aws-cdk-lib/aws-lambda";
-import { Bucket } from "aws-cdk-lib/aws-s3";
+import {
+  CustomResource,
+  Duration,
+  aws_iam as iam,
+  aws_dynamodb as dynamodb,
+  aws_lambda as lambda,
+  aws_s3 as s3
+} from "aws-cdk-lib";
 import { Construct } from "constructs";
 
 import { Seeds } from "./seeds";
 
 export interface DynamoDBSeederProps {
-  readonly table: ITable;
+  readonly table: dynamodb.ITable;
   readonly seeds: Seeds;
 
   /**
@@ -28,21 +31,21 @@ export class DynamoDBSeeder extends Construct {
 
     const seeds = props.seeds.bind(this);
     const seedsBucket = seeds.s3Location?.bucketName
-      ? Bucket.fromBucketName(this, "SeedsBucket", seeds.s3Location.bucketName)
+      ? s3.Bucket.fromBucketName(this, "SeedsBucket", seeds.s3Location.bucketName)
       : undefined;
 
-    const handler = new SingletonFunction(this, "CustomResourceHandler", {
+    const handler = new lambda.SingletonFunction(this, "CustomResourceHandler", {
       uuid: "Custom::DynamodbSeeder",
-      runtime: Runtime.NODEJS_18_X,
-      code: Code.fromAsset(path.join(__dirname, "lambdas", "dynamodb-seeder")),
+      runtime: lambda.Runtime.NODEJS_18_X,
+      code: lambda.Code.fromAsset(path.join(__dirname, "lambdas", "dynamodb-seeder")),
       handler: "index.handler",
       lambdaPurpose: "Custom::DynamodbSeeder",
       timeout: props.timeout ?? Duration.minutes(15)
     });
 
     handler.addToRolePolicy(
-      new PolicyStatement({
-        effect: Effect.ALLOW,
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
         actions: ["dynamodb:BatchWriteItem"],
         resources: [props.table.tableArn]
       })
@@ -50,8 +53,8 @@ export class DynamoDBSeeder extends Construct {
 
     if (props.table.encryptionKey) {
       handler.addToRolePolicy(
-        new PolicyStatement({
-          effect: Effect.ALLOW,
+        new iam.PolicyStatement({
+          effect: iam.Effect.ALLOW,
           actions: [
             "kms:Encrypt",
             "kms:Decrypt",
@@ -69,8 +72,8 @@ export class DynamoDBSeeder extends Construct {
       const objectKey = seeds.s3Location?.objectKey ?? "*";
 
       handler.addToRolePolicy(
-        new PolicyStatement({
-          effect: Effect.ALLOW,
+        new iam.PolicyStatement({
+          effect: iam.Effect.ALLOW,
           actions: ["s3:GetObject"],
           resources: [seedsBucket.arnForObjects(objectKey)]
         })

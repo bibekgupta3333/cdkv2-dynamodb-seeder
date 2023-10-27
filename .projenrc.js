@@ -51,20 +51,20 @@ const project = new typescript.TypeScriptProject({
   devDeps: [
     "aws-cdk-lib@2.96.0",
     "@types/lodash.chunk@4.2.7",
-
-    "custom-resource-helper",
     "jest-cdk-snapshot",
     "lodash.chunk@4.2.0",
     "aws-lambda",
     "@types/aws-lambda"
   ],
   deps: [
+    "aws-sdk",
     "aws-cdk-lib@2.96.0",
+    "custom-resource-helper",
     "aws-cdk@2.96.0",
     "constructs@10.0.5",
+    "lodash.chunk@4.2.0",
     "aws-lambda",
-    "minimatch",
-    "aws-sdk"
+    "minimatch"
   ]
 });
 
