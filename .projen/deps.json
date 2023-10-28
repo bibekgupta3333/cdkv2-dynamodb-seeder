@@ -38,6 +38,10 @@
       "type": "build"
     },
     {
+      "name": "custom-resource-helper",
+      "type": "build"
+    },
+    {
       "name": "eslint-config-prettier",
       "type": "build"
     },

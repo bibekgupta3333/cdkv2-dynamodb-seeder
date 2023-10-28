@@ -52,6 +52,7 @@ const project = new typescript.TypeScriptProject({
     "aws-cdk-lib@2.96.0",
     "@types/lodash.chunk@4.2.7",
     "jest-cdk-snapshot",
+    "custom-resource-helper",
     "lodash.chunk@4.2.0",
     "aws-lambda",
     "@types/aws-lambda"
