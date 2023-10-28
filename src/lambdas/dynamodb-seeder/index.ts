@@ -1,5 +1,7 @@
+import { DynamoDB } from "@aws-sdk/client-dynamodb";
+import { S3 } from "@aws-sdk/client-s3";
+import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb";
 import type { CloudFormationCustomResourceEvent } from "aws-lambda";
-import { DynamoDB, S3 } from "aws-sdk";
 import {
   customResourceHelper,
   OnCreateHandler,
@@ -24,7 +26,7 @@ interface DynamoDBSeederProps {
 
 type Seeds = Record<string, unknown>[];
 
-const dynamodb = new DynamoDB.DocumentClient();
+const dynamodb = DynamoDBDocument.from(new DynamoDB());
 const s3 = new S3();
 
 const getProperties = (
@@ -66,13 +68,11 @@ const getSeedsFromS3 = async (s3Location: {
     throw new Error("Bucket configuration missing!");
   }
 
-  const { Body: body } = await s3
-    .getObject({
-      Bucket: s3Bucket,
-      Key: s3Key,
-      VersionId: s3ObjectVersion
-    })
-    .promise();
+  const { Body: body } = await s3.getObject({
+    Bucket: s3Bucket,
+    Key: s3Key,
+    VersionId: s3ObjectVersion
+  });
 
   if (!body) {
     throw new Error(`Cannot load seeds from bucket ${s3Bucket} with key ${s3Key}`);
@@ -94,13 +94,11 @@ const writeSeeds = async (tableName: string, seeds: Seeds): Promise<void> => {
         }
       }));
 
-      return dynamodb
-        .batchWrite({
-          RequestItems: {
-            [tableName]: requests
-          }
-        })
-        .promise();
+      return dynamodb.batchWrite({
+        RequestItems: {
+          [tableName]: requests
+        }
+      });
     })
   );
 };

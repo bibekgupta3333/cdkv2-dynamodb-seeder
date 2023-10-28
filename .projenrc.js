@@ -57,7 +57,9 @@ const project = new typescript.TypeScriptProject({
     "@types/aws-lambda"
   ],
   deps: [
-    "aws-sdk",
+    "@aws-sdk/client-dynamodb",
+    "@aws-sdk/client-s3",
+    "@aws-sdk/lib-dynamodb",
     "aws-cdk-lib@2.96.0",
     "custom-resource-helper",
     "aws-cdk@2.96.0",
