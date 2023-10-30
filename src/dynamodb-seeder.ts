@@ -39,6 +39,7 @@ export class DynamoDBSeeder extends Construct {
       runtime: lambda.Runtime.NODEJS_18_X,
       code: lambda.Code.fromAsset(path.join(__dirname, "lambdas", "dynamodb-seeder")),
       handler: "index.handler",
+      memorySize: 256,
       lambdaPurpose: "Custom::DynamodbSeeder",
       timeout: props.timeout ?? Duration.minutes(15)
     });
