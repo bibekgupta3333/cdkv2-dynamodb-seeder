@@ -13,7 +13,7 @@ exports[`bucket 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "791c92a96f3b8023531a8d8a4a1f77b79dcaf9e814a90ac99d17f9bd87eb116e.zip",
+          "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
         "Role": {
@@ -160,7 +160,7 @@ exports[`customer managed encryption key 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "791c92a96f3b8023531a8d8a4a1f77b79dcaf9e814a90ac99d17f9bd87eb116e.zip",
+          "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
         "Role": {
@@ -354,7 +354,7 @@ exports[`inline 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "791c92a96f3b8023531a8d8a4a1f77b79dcaf9e814a90ac99d17f9bd87eb116e.zip",
+          "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
         "Role": {
@@ -484,7 +484,7 @@ exports[`json file 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "791c92a96f3b8023531a8d8a4a1f77b79dcaf9e814a90ac99d17f9bd87eb116e.zip",
+          "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
         "Role": {
@@ -637,7 +637,7 @@ exports[`multiple seeders 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "791c92a96f3b8023531a8d8a4a1f77b79dcaf9e814a90ac99d17f9bd87eb116e.zip",
+          "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
         "Role": {
