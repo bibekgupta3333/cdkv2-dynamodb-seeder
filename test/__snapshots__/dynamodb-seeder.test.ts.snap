@@ -16,6 +16,7 @@ exports[`bucket 1`] = `
           "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
+        "MemorySize": 256,
         "Role": {
           "Fn::GetAtt": [
             "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
@@ -163,6 +164,7 @@ exports[`customer managed encryption key 1`] = `
           "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
+        "MemorySize": 256,
         "Role": {
           "Fn::GetAtt": [
             "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
@@ -357,6 +359,7 @@ exports[`inline 1`] = `
           "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
+        "MemorySize": 256,
         "Role": {
           "Fn::GetAtt": [
             "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
@@ -487,6 +490,7 @@ exports[`json file 1`] = `
           "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
+        "MemorySize": 256,
         "Role": {
           "Fn::GetAtt": [
             "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
@@ -640,6 +644,7 @@ exports[`multiple seeders 1`] = `
           "S3Key": "0cca44bd7835a9838d695ed9cbc4da0e36d7d616850d92d576098b96046e56e4.zip",
         },
         "Handler": "index.handler",
+        "MemorySize": 256,
         "Role": {
           "Fn::GetAtt": [
             "CustomDynamodbSeederCustomDynamodbSeederServiceRole5FC6AEF8",
