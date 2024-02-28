@@ -4,9 +4,10 @@ import {
   Duration,
   aws_iam as iam,
   aws_dynamodb as dynamodb,
-  aws_lambda as lambda,
   aws_s3 as s3
 } from "aws-cdk-lib";
+import { Runtime } from "aws-cdk-lib/aws-lambda";
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 
 import { Seeds } from "./seeds";
@@ -33,15 +34,24 @@ export class DynamoDBSeeder extends Construct {
     const seedsBucket = seeds.s3Location?.bucketName
       ? s3.Bucket.fromBucketName(this, "SeedsBucket", seeds.s3Location.bucketName)
       : undefined;
-
-    const handler = new lambda.SingletonFunction(this, "CustomResourceHandler", {
-      uuid: "Custom::DynamodbSeeder",
-      runtime: lambda.Runtime.NODEJS_18_X,
-      code: lambda.Code.fromAsset(path.join(__dirname, "lambdas", "dynamodb-seeder")),
-      handler: "index.handler",
-      memorySize: 256,
-      lambdaPurpose: "Custom::DynamodbSeeder",
-      timeout: props.timeout ?? Duration.minutes(15)
+    const entryPath = path.join(__dirname, "lambdas", "dynamodb-seeder", "index.ts");
+    console.log(entryPath);
+    const handler = new NodejsFunction(this, "CustomResourceHandler", {
+      runtime: Runtime.NODEJS_16_X,
+      entry: path.join(__dirname, "lambdas", "dynamodb-seeder", "index.ts"),
+      handler: "handler",
+      memorySize: 512,
+      timeout: props.timeout ?? Duration.minutes(15),
+      bundling: {
+        minify: true, // minify code, defaults to false
+        sourceMap: true,
+        target: "es2020", // target environment for the generated JavaScript code
+        metafile: true, // include meta file, defaults to false
+        preCompilation: true
+      },
+      environment: {
+        NODE_OPTIONS: "--enable-source-maps"
+      }
     });
 
     handler.addToRolePolicy(

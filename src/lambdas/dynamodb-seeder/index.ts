@@ -103,8 +103,9 @@ const writeSeeds = async (tableName: string, seeds: Seeds): Promise<void> => {
   );
 };
 
-export const handler = customResourceHelper(
+const handler = customResourceHelper(
   (): ResourceHandler => ({
     onCreate: handleCreate
   })
 );
+export { handler };

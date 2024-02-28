@@ -13,7 +13,9 @@ const project = new typescript.TypeScriptProject({
   tsconfig: {
     compilerOptions: {
       strictPropertyInitialization: false,
-      useUnknownInCatchVariables: false
+      useUnknownInCatchVariables: false,
+      lib: ["ES2020"],
+      target: "ES2020"
     }
   },
   depsUpgrade: false,
@@ -54,7 +56,10 @@ const project = new typescript.TypeScriptProject({
     "jest-cdk-snapshot",
     "custom-resource-helper",
     "lodash.chunk@4.2.0",
+    "esbuild@0.20.0",
     "aws-lambda",
+    "@types/node@20",
+    "ts-node",
     "@types/aws-lambda"
   ],
   deps: [

@@ -42,6 +42,11 @@
       "type": "build"
     },
     {
+      "name": "esbuild",
+      "version": "0.20.0",
+      "type": "build"
+    },
+    {
       "name": "eslint-config-prettier",
       "type": "build"
     },
@@ -99,6 +104,10 @@
     },
     {
       "name": "ts-jest",
+      "type": "build"
+    },
+    {
+      "name": "ts-node",
       "type": "build"
     },
     {
