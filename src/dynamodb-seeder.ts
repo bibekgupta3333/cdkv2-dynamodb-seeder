@@ -46,8 +46,7 @@ export class DynamoDBSeeder extends Construct {
         minify: true, // minify code, defaults to false
         sourceMap: true,
         target: "es2020", // target environment for the generated JavaScript code
-        metafile: true, // include meta file, defaults to false
-        preCompilation: true
+        metafile: true // include meta file, defaults to false
       },
       environment: {
         NODE_OPTIONS: "--enable-source-maps"
