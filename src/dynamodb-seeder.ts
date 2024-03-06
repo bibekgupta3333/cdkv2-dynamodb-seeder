@@ -34,11 +34,11 @@ export class DynamoDBSeeder extends Construct {
     const seedsBucket = seeds.s3Location?.bucketName
       ? s3.Bucket.fromBucketName(this, "SeedsBucket", seeds.s3Location.bucketName)
       : undefined;
-    const entryPath = path.join(__dirname, "lambdas", "dynamodb-seeder", "index.ts");
+    const entryPath = path.join(__dirname, "lambdas", "dynamodb-seeder", "index.js");
     console.log(entryPath);
     const handler = new NodejsFunction(this, "CustomResourceHandler", {
       runtime: Runtime.NODEJS_16_X,
-      entry: path.join(__dirname, "lambdas", "dynamodb-seeder", "index.ts"),
+      entry: path.join(__dirname, "lambdas", "dynamodb-seeder", "index.js"),
       handler: "handler",
       memorySize: 512,
       timeout: props.timeout ?? Duration.minutes(15),
